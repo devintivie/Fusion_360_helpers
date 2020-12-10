@@ -379,7 +379,7 @@ int WindowMinWidth      = 1200;
 // preserved and the new attributes will may also be assigned to the
 // name below.
 
-string strPartNumAttrName = "PARTNO";
+string strPartNumAttrName = "PART_NUMBER";
 
 int BldQty1             = 1;    // specifies the qty of units to build
 
@@ -577,9 +577,13 @@ void CollectPartData(string var)
                         }
                         else if (aname == "VALUE")
                         {
+                            //string msg;
+                            //sprintf(msg, "part %s has value of %s, %s", aname, avalue, P.value);
+                            //dlgMessageBox(msg, "OK");
                             // Attribute VALUE overrides native value
-                            if (strlen(avalue))
-                                val = avalue;
+                            //if (strlen(avalue))
+                            //    val = avalue;
+                            val = P.value;
                         }
                         else if (aname == "BOM")
                         {
@@ -946,7 +950,9 @@ string MakeListTextCSV(void)
 
 string MakeListHTML(void)
 {
-    string List;
+    string List = "<head>\n\t<style>";
+    List += "table, th, td {\nborder: 1px solid black;\n";
+    List += "border-collapse: collapse;\n}\n</style>\n</head>\n";
     //List = "<b>" + MakeListHeader() + "</b>\n<p>\n";
     List += "<table>\n";
     int numHeaders;
